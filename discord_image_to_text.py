@@ -18,19 +18,20 @@ from imagetotext import *
 from env import *
 
 def getVariables(channel):
-    ##########################################################################
-    # binary = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
-
-    # caps = DesiredCapabilities.FIREFOX.copy()
-    # caps['marionette'] = True
-    # driver = webdriver.Firefox(firefox_binary=binary,capabilities=caps, executable_path= os.getcwd()+"\geckodriver.exe")
-
-    ############################################################################
+ 
     options = webdriver.FirefoxOptions()
     options.add_argument('-headless')
+    #
+    # use headless browser.
+    #
+
     # driver = webdriver.Firefox(firefox_options=options)
+
+    #
+    # use firefox browser.
+    #
+
     driver = webdriver.Firefox()
-    ############################################################################
 
     #
     # Grab configuration settings
