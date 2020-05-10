@@ -17,7 +17,7 @@ from selenium.common.exceptions import TimeoutException
 from imagetotext import *
 from env import *
 
-def getVariables(channel):
+def getVariables(chann):
  
     options = webdriver.FirefoxOptions()
     options.add_argument('-headless')
@@ -39,12 +39,10 @@ def getVariables(channel):
     email = Connection['EMAIL']
     password = Connection['PASSWORD']
     print(CHA)
-    print(sys.argv[1])
     try:
-        ptr = CHA[channel]
+        ptr = CHA[chann]
     except:
-        print ('Input incorrect! Please check and try again.')
-        exit()
+        return None
     channel = ptr['CHANNEL']
     guild = ptr['GUILD']
     query = ptr['variable_list']
