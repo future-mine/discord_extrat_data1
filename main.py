@@ -20,8 +20,6 @@ from selenium.common.exceptions import TimeoutException
 from imagetotext import *
 from env import *
 
-
-
 ##########################################################################
 # binary = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
@@ -36,6 +34,9 @@ options.add_argument('-headless')
 driver = webdriver.Firefox()
 ############################################################################
 
+#
+# Grab configuration settings
+#
 email = Connection['EMAIL']
 password = Connection['PASSWORD']
 print(CHA)
@@ -43,7 +44,7 @@ print(sys.argv[1])
 try:
     ptr = CHA[sys.argv[1]]
 except:
-    print ('Input correctly! ["Channel1"/"Channel2"]')
+    print ('Input incorrect! Please check and try again.')
     exit()
 channel = ptr['CHANNEL']
 guild = ptr['GUILD']
@@ -51,6 +52,10 @@ query = ptr['variable_list']
 print(query)
 url = "https://discord.com/login"
 driver.get(url) 
+
+#
+# Comment?
+#
 while True:
     try:
         email_el = driver.find_element_by_xpath('/html/body/div/div[2]/div/div[2]/div/div/form/div/div/div[1]/div[3]/div[1]/div/input')
@@ -65,12 +70,18 @@ while True:
     except:
         time.sleep(1)
 
+#
+# Comment?
+#
 try:
     myElem = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.ID, 'IdOfMyElement')))
     print ("Page is ready!")
 except TimeoutException:
     pass
 
+#
+# Comment?
+#
 channel_url = 'https://discord.com/channels/707492893845225533/707492893845225536'
 channel_url = 'https://discord.com/channels/' + channel + '/' + guild
 driver.get(channel_url)
@@ -82,9 +93,11 @@ while True:
     else:
         time.sleep(1)
 
-
 image_urls = []
 
+#
+# Comment?
+#
 for it in items:
     url = it['href']
     ptrarr = url.split('/')
@@ -96,7 +109,9 @@ with open('data/ptr.png', 'wb') as handler:
     handler.write(latestimg_data)
 latesttext = get_string('data/ptr.png')
 
-
+#
+# Comment?
+#
 def find_str(strl, substr):
     if(len(substr.strip())==0):
         return strl.encode('ascii')
@@ -111,6 +126,9 @@ def find_str(strl, substr):
         return sub.encode('ascii')
     return None
 
+#
+# Comment?
+#
 result = []
 for it in query:
     key = it['variable']
@@ -120,13 +138,12 @@ for it in query:
 print(result)
 driver.close()
 
-
-
-
-
 def check_json(json):
     return True
 
+#
+# Comment?
+#
 def write(nums_get):
     t = time.localtime()
     current_time = time.strftime("%H_%M_S", t)
@@ -145,8 +162,4 @@ def write(nums_get):
     # Convert the dataframe to an XlsxWriter Excel object.
         df.to_excel(writer, sheet_name='Sheet')
     writer.close()
-
-
-
-
 
