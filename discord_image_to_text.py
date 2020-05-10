@@ -133,6 +133,8 @@ def getVariables(channel):
         querystr = it['texttosearch']
         val = find_str(latesttext,querystr)
         result.append({key:val})
+
     print(result)
     driver.close()
+    return result
 
