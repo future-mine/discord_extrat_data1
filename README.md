@@ -3,7 +3,6 @@ sudo apt update
 sudo apt install firefox
 ---------------------------------------------------------
 2.Install python, pip
-... ... ... ... ... ...
 --------------------------------------------------------
 3.Install tesseract-ocr-osd
 
