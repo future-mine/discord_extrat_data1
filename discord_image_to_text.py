@@ -17,7 +17,7 @@ from selenium.common.exceptions import TimeoutException
 from imagetotext import *
 from env import *
 
-def getVariables(chann):
+def getVariables(channel_name):
  
     options = webdriver.FirefoxOptions()
     options.add_argument('-headless')
@@ -25,13 +25,13 @@ def getVariables(chann):
     # use headless browser.
     #
 
-    # driver = webdriver.Firefox(firefox_options=options)
+    driver = webdriver.Firefox(firefox_options=options)
 
     #
     # use firefox browser.
     #
 
-    driver = webdriver.Firefox()
+    # driver = webdriver.Firefox()
 
     #
     # Grab configuration settings
@@ -40,7 +40,7 @@ def getVariables(chann):
     password = Connection['PASSWORD']
     print(CHA)
     try:
-        ptr = CHA[chann]
+        ptr = CHA[channel_name]
     except:
         return None
     channel = ptr['CHANNEL']
@@ -106,7 +106,7 @@ def getVariables(chann):
     latesttext = get_string('data/ptr.png')
 
     #
-    # a function to get turple according to setting request
+    # a function to get tuple according to setting request
     #
     def find_str(strl, substr):
         if(len(substr.strip())==0):
