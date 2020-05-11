@@ -106,11 +106,21 @@ def getVariables(channel_name):
     latesttext = get_string('data/ptr.png')
 
     #
-    # a function to get tuple according to setting request
+    # a function to get string according to setting request
     #
+    def get_cleanstring(string):
+        resl = None
+        try:
+            resl = string.decode('utf-8')
+        except:
+            try:
+                resl = string.decode('ascii')
+            except:
+                resl = string
+        return resl
     def find_str(strl, substr):
         if(len(substr.strip())==0):
-            return strl.encode('ascii')
+            return strl.decode('ascii')
         sea = re.search(substr, strl)
         if (sea):
             loc = sea.span()
@@ -119,18 +129,18 @@ def getVariables(channel_name):
             while(i<len(strl) and strl[i]!=' ' and strl[i]!='\n'):
                 sub += strl[i]
                 i += 1
-            return sub.encode('ascii')
+            return get_cleanstring(sub)
         return None
 
     #
-    # Get a turple from the lates text according the setting.
+    # Get a dictionary from the lates text according the setting.
     #
-    result = []
+    result = {}
     for it in query:
         key = it['variable']
         querystr = it['texttosearch']
         val = find_str(latesttext,querystr)
-        result.append({key:val})
+        result[key] =val
 
     print(result)
     driver.close()
