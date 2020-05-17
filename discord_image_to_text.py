@@ -120,7 +120,7 @@ def getVariables(channel_name):
         return resl
     def find_str(strl, substr):
         if(len(substr.strip())==0):
-            return strl.decode('ascii')
+            return get_cleanstring(strl)
         sea = re.search(substr, strl)
         if (sea):
             loc = sea.span()
